@@ -3,7 +3,7 @@ plugins {
     id ("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
-group = "net.urbanmc"
+group = "net.lithosmc"
 version = "1.0"
 
 repositories {
@@ -12,12 +12,9 @@ repositories {
     maven (
         url= "https://papermc.io/repo/repository/maven-public/"
     )
-    // Towny, Vault, VotingPlugin
+    // Towny, Vault, VotingPlugin, CommentConfig
     maven (
         url = "https://jitpack.io"
-    )
-    maven (
-        url = "https://mymavenrepo.com/repo/HHyD2DSksZhahhvVRUn6/" // Silver Repo
     )
     // MiniMessage
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/") {
@@ -31,7 +28,7 @@ dependencies {
     compileOnly ("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly ("com.github.TownyAdvanced:Towny:0.97.0.11")
     implementation("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT")
-    implementation("me.Silverwolfg11:CommentConfig:0.92")
+    implementation("com.github.silverwolfg11:CommentConfig:v1.0.0")
 }
 
 // Configure plugins

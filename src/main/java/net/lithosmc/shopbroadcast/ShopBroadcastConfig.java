@@ -95,7 +95,7 @@ public class ShopBroadcastConfig {
         try {
             config = deserializer.deserializeClass(file, ShopBroadcastConfig.class);
         }
-        catch (FileNotFoundException ex) {
+        catch (IOException ex) {
             logger.log(Level.SEVERE, "Error deserializing configuration!", ex);
             return null;
         }
