@@ -1,0 +1,58 @@
+name: ShopBroadcast
+main: net.lithosmc.shopbroadcast.ShopBroadcast
+version: 1.0
+author: Silverwolfg11
+api-version: 1.17
+softdepend: [Vault, PlayerWarps]
+commands:
+  shopad:
+    description: Command for ShopBroadcast plugin.
+    aliases: [ad]
+
+permissions:
+  shopbroadcast.default:
+    description: Main command for ShopBroadcast
+    default: true
+    children:
+      shopbroadcast.help: true
+      shopbroadcast.buy: true
+      shopbroadcast.edit: true
+      shopbroadcast.delete: true
+      shopbroadcast.set: true
+      shopbroadcast.list: true
+
+  shopbroadcast.admin:
+    description: Admin command for ShopBroadcast
+    default: op
+    children:
+      shopbroadcast.default: true
+      shopbroadcast.buy.admin: true
+      shopbroadcast.edit.admin: true
+      shopbroadcast.delete.admin: true
+      shopbroadcast.reload: true
+
+  shopbroadcast.unlimited:
+    description: Allows user to have unlimited advertisements simultaneously
+    default: op
+
+  # Command Permissions
+  shopbroadcast.help:
+    description: Permission to use the help subcommand.
+  shopbroadcast.buy:
+    description: Permission to use the buy subcommand.
+  shopbroadcast.buy.admin:
+    description: Permission to use the adminbuy subcommand.
+  shopbroadcast.edit:
+    description: Permission to use the buy subcommand.
+  shopbroadcast.edit.admin:
+    description: Permission to use the adminedit subcommand.
+  shopbroadcast.delete:
+    description: Permission to use the delete subcommand.
+  shopbroadcast.delete.admin:
+    description: Permission to use the admindelete subcommand.
+  shopbroadcast.set:
+    description: Permission to use the set subcommand.
+  shopbroadcast.list:
+    description: Permission to use the list subcommand.
+  shopbroadcast.reload:
+    description: Permission to use the reload subcommand.

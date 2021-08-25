@@ -1,0 +1,87 @@
+Features:
+- ShopBroadcasts run at specific configurable intervals
+- ShopBroadcasts can be clicked on an teleport to a town or playerwarp.
+- ShopBroadcasts can bought with money or votepoints
+- ShopBroadcasts expire after a specific amount of time
+- ShopBroadcasts can be editted
+
+ShopBroadcast Plugin:
+- Loads hooks (HookManager)
+- Reads config
+- Passes config to hooks (HookManager)
+- Registers command and tab completion
+
+SBHookManager:
+- Loads hooks
+- Has method to read config
+- Has method to check if broadcast can be bought
+- Has method to buy broadcast
+- Has method to handle click
+
+Hook Interfaces:
+
+ISBClickable
+- ClickEvent onBroadcastClick(Player player, ShopBroadcast broadcast): returns ClickEvent if hook has handled click or null otherwise
+
+ISBCost
+- boolean canBuy (Player player): returns true if player can buy shopbroadcast, false otherwise.
+- void buy(Player player, ShopBroadcast broadcast): Handle buying the actual shop broadcast
+
+ISBReadConfig
+- void readConfig(ShopBroadcastConfig config)
+
+ISBType
+- String getType(): Return type. Should be hard-coded
+- String setTypeData(String dataArg): Set the type data accordingly. A null value indicates an invalid type argument.
+- ClickEvent onBroadcastClick(Player player, ShopBroadcast broadcast): returns ClickEvent if hook has handled click matching the type or null otherwise
+
+Object Classes:
+
+AdTypeData:
+- -String type
+- -String data
+- +getType()
+- +getData()
+
+ShopAd
+- -UUID owner
+- -String text
+- -AdTypeData typeData
+- -long timeCreated
+
+- +getOwnerUUID() = owner
+- +getOwnerPlayer()
+- +getText()
+- +setText(String txt)
+- +getTimeCreated()
+- +boolean isType(String type) = returns if shopad is of type.
+
+Hooks
+
+VaultHook i ISBCost, ISBReadConfig:
+- -bool useVault = false // Check constructor
+- -double shopAdCost = -1
+- readConfig(): Read shopad cost from config
+- canBuy(): Check if player can buy broadcast with money
+- buy(): Withdraw amount from player
+
+PlayerWarpHook i ISBClickable, ISBType
+- onBroadcastClick: Execute command /pwarps go Owner
+- getType = "playerwarp"
+- setTypeData: Return empty string.
+
+TownyHook i ISBType, ISBClickable
+- onBroadcastClick: Go to town
+- getType = "towny"
+- setTypeData: Town UUID
+
+ShopAdCommand:
+- Buy <Text>
+- Edit <Text>
+- set <type> [argument]
+- Delete [Player]
+- List
+
+- ShopAdTask
+- Broadcast
+- DeleteExpired
