@@ -22,7 +22,7 @@ but are not required for the plugin to function.
 to have advertisements teleport other players to their town.
 
 ## Installing
-Download the plugin from the releases page and install in your plugins directory.
+Download the plugin from the [releases page](https://github.com/UrbanMC-Devs/ShopBroadcasts/releases/latest) and install in your plugins directory.
 
 ## Basic Player Usage Info
 Players can buy shop advertisements with `/shopad buy [message]` and provide a message to be displayed when their
