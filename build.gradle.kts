@@ -22,13 +22,16 @@ repositories {
     }
 }
 
+val commentConfigDep = "com.github.silverwolfg11:CommentConfig:v1.0.0"
+val miniMessageDep = "net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT"
+
 dependencies {
     compileOnly ("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
     compileOnly ("com.github.BenCodez:VotingPlugin:6.4.1")
     compileOnly ("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly ("com.github.TownyAdvanced:Towny:0.97.0.11")
-    implementation("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT")
-    implementation("com.github.silverwolfg11:CommentConfig:v1.0.0")
+    implementation(commentConfigDep)
+    implementation(miniMessageDep)
 }
 
 // Configure plugins
@@ -43,11 +46,13 @@ java {
 tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
     archiveBaseName.set("ShopBroadcast")
 
-    relocate("me.Silverwolfg11.CommentConfig", "net.lithosmc.shopbroadcast.commentconfig")
-    relocate("net.kyori.adventure.text.minimessage", "net.lithosmc.shopbroadcast.minimessage")
+    val pathPrefix = "net.lithosmc.shopbroadcast"
+
+    relocate("me.Silverwolfg11.CommentConfig", "$pathPrefix.commentconfig")
+    relocate("net.kyori.adventure.text.minimessage", "$pathPrefix.minimessage")
 
     dependencies {
-        include(dependency("me.Silverwolfg11:CommentConfig:0.92"))
-        include(dependency("net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT"))
+        include(dependency(commentConfigDep))
+        include(dependency(miniMessageDep))
     }
 }
